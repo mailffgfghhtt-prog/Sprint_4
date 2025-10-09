@@ -1,3 +1,7 @@
+.idea/
+.idea/encodings.xml
+.idea/misc.xml
+.idea/vcs.xml
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

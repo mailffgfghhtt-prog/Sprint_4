@@ -1,7 +1,6 @@
 import org.junit.Test;
 
-
-public class firefoxTest extends baseTest {
+public class FirefoxTest extends baseTest {
 
     @Test
     public void firefoxFormaTest() {
@@ -13,7 +12,7 @@ public class firefoxTest extends baseTest {
         minePage.inputAdress("Кутузовский 34");
         minePage.inputNumber("+79515142053");
         minePage.checkStation();
-        minePage.clickBtn2();
+        minePage.clickBtnNext();
         minePage.inputDeliveryDate("22.02.2026");
         minePage.clickRentalPeriod();
         minePage.checkRentalPeriod();
@@ -22,6 +21,5 @@ public class firefoxTest extends baseTest {
         minePage.clickBtnY();
         minePage.clickBtnOk();
         minePage.chekingText();
-
     }
 }

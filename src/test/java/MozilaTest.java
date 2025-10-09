@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class mozilatest extends baseTest{
+public class MozilaTest extends baseTest{
 
     @Test
     public void firefoxFormsTest() {
@@ -11,7 +11,7 @@ public class mozilatest extends baseTest{
         minePage.inputAdress("Кремль");
         minePage.inputNumber("+79613306619");
         minePage.checkStation();
-        minePage.clickBtn2();
+        minePage.clickBtnNext();
         minePage.inputDeliveryDate("28.11.2025");
         minePage.clickRentalPeriod();
         minePage.checkRentalPeriod();
