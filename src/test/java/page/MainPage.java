@@ -11,7 +11,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertTrue;
+
 @RunWith(Parameterized.class)
 public class MainPage {
     private WebDriver driver;
