@@ -1,28 +1,73 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import page.MainFaqPage;
 import page.MainPage;
-import page.MainAHPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import static org.junit.Assert.assertTrue;
+import java.util.Arrays;
+import java.util.Collection;
 
+@RunWith(Parameterized.class)
 public class baseTest {
     WebDriver driver;
     WebDriverWait wait;
     MainPage minePage;
-    MainAHPage mainAHPage;
+    private String browser;
+
+    // Поле для хранения типа браузера
+    public baseTest() {
+        // Инициализация по умолчанию
+    }
+
+    // Конструктор с параметром
+    public baseTest(String browser) {
+        this.browser = browser;
+    }
 
     @Before
     public void setUp() {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        switch (browser) {  // Используем поле класса
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Неизвестный браузер: " + browser);
+        }
+
         wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         minePage = new MainPage(driver);
-        mainAHPage = new MainAHPage(driver);
+
     }
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {"chrome"},
+                {"firefox"}
+        });
+    }
+
+    public void setupCommonStuff(WebDriver driver) {
+
+    }
+
+    public void tearDownCommonStuff() {
+
+    }
+
     @After
     public void tearDown() {
         if (driver != null) {

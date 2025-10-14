@@ -1,6 +1,13 @@
 import org.junit.Test;
 
+
+
 public class FirefoxTest extends baseTest {
+
+
+    public FirefoxTest(String browser) {
+        super(browser);
+    }
 
     @Test
     public void firefoxFormaTest() {
@@ -20,6 +27,9 @@ public class FirefoxTest extends baseTest {
         minePage.inputComment("Привезите после 15:00");
         minePage.clickBtnY();
         minePage.clickBtnOk();
+        minePage.clickStatusBtn();
         minePage.chekingText();
     }
+
+
 }

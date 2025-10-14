@@ -2,6 +2,10 @@ import org.junit.Test;
 
 public class MozilaTest extends baseTest{
 
+    public MozilaTest(String browser) {
+        super(browser);
+    }
+
     @Test
     public void firefoxFormsTest() {
         minePage.getPage();
@@ -19,6 +23,7 @@ public class MozilaTest extends baseTest{
         minePage.inputComment("За час позвонить");
         minePage.clickBtnY();
         minePage.clickBtnOk();
+        minePage.clickStatusBtn();
         minePage.chekingText();
     }
 }
