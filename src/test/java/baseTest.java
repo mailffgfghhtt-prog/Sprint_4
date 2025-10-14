@@ -1,8 +1,6 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import page.MainFaqPage;
 import page.MainPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -22,19 +20,19 @@ public class baseTest {
     MainPage minePage;
     private String browser;
 
-    // Поле для хранения типа браузера
+
     public baseTest() {
-        // Инициализация по умолчанию
+
     }
 
-    // Конструктор с параметром
+
     public baseTest(String browser) {
         this.browser = browser;
     }
 
     @Before
     public void setUp() {
-        switch (browser) {  // Используем поле класса
+        switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
