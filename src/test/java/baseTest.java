@@ -1,75 +1,50 @@
-
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import page.MainPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.FaqMainPage;
+import page.FormMainPage;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Collection;
-
 @RunWith(Parameterized.class)
-public class baseTest {
-    WebDriver driver;
-    WebDriverWait wait;
-    MainPage minePage;
-    private String browser;
-
-
-    public baseTest() {
-
+public abstract class BaseTest {
+    protected WebDriver driver;
+    protected String browserType;
+    public WebDriverWait wait;
+    FormMainPage formMainPage;
+    FaqMainPage faqMainPage;
+    public BaseTest(String browserType) {
+        this.browserType = browserType;
     }
-
-
-    public baseTest(String browser) {
-        this.browser = browser;
-    }
-
     @Before
     public void setUp() {
-        switch (browser) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
-            default:
-                throw new IllegalArgumentException("Неизвестный браузер: " + browser);
+        if ("chrome".equals(browserType)) {
+            driver = new ChromeDriver();
+        } else if ("firefox".equals(browserType)) {
+            driver = new FirefoxDriver();
+        } else {
+            throw new IllegalArgumentException("Неизвестный тип браузера: " + browserType);
         }
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-        minePage = new MainPage(driver);
-
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        formMainPage = new FormMainPage(driver);
+        faqMainPage = new FaqMainPage(driver);
     }
-
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {"chrome"},
-                {"firefox"}
-        });
-    }
-
-    public void setupCommonStuff(WebDriver driver) {
-
-    }
-
-    public void tearDownCommonStuff() {
-
-    }
-
     @After
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
+    @Parameterized.Parameters
+    public static Object[][] data() {
+        return new Object[][]{
+                {"firefox"},
+                {"chrome"}
+        };
+    }
 }
+
