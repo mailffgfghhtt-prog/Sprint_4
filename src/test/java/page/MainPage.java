@@ -1,5 +1,6 @@
 package page;
 
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
@@ -20,7 +21,7 @@ public class MainPage {
     private By btnOk = By.cssSelector("div.Order_Buttons__1xGrp:nth-child(2) > button:nth-child(2)");
     private By btnY = By.cssSelector("button.Button_Middle__1CSJM:nth-child(2)");
     private By comment = By.cssSelector("input[placeholder='Комментарий для курьера']");
-    private By CRentalPeriod = By.cssSelector(".Dropdown-arrow");
+    private By сRentalPeriod = By.cssSelector(".Dropdown-arrow");
     private By collor = By.xpath("//*[@id=\"black\"]");
     private By deliveryDate = By.cssSelector("input[placeholder='* Когда привезти самокат']");
     private By rentalPeriod = By.cssSelector("div.Dropdown-option:nth-child(2)");
@@ -79,7 +80,7 @@ public class MainPage {
     }
 
     public void clickRentalPeriod() {
-        driver.findElement(CRentalPeriod).click();
+        driver.findElement(сRentalPeriod).click();
     }
 
     public void clickBtnNext() {
@@ -131,11 +132,40 @@ public class MainPage {
         driver.findElement(btnUp).click();
     }
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {"chrome"},
-                {"firefox"}
-        });
+
+    public void assertComment(String s) {
+        String actualComment = driver.findElement(comment).getAttribute("value");
+        String expectedComment = s;
+        Assert.assertEquals("Введённый комментарий не совпадает с ожидаемым", expectedComment, actualComment);
+    }
+
+    public void assertDeliveryDate(String s) {
+        String actualDeliveryDate = driver.findElement(deliveryDate).getAttribute("value");
+        String expectedDeliveryDate = s;
+        Assert.assertEquals("Введённая дата не совпадает с ожидаемым", expectedDeliveryDate, actualDeliveryDate);
+    }
+
+    public void assertNumber(String s) {
+        String actualNumber = driver.findElement(number).getAttribute("value");
+        String expectedNumber = s;
+        Assert.assertEquals("Введённый номер не совпадает с ожидаемым", expectedNumber, actualNumber);
+    }
+
+    public void assertAdress(String s) {
+        String actualAdress = driver.findElement(adress).getAttribute("value");
+        String expectedAdress = s;
+        Assert.assertEquals("Введённый адрес не совпадает с ожидаемым", expectedAdress, actualAdress);
+    }
+
+    public void assertFirstName(String s) {
+        String actualFirstName = driver.findElement(firstName).getAttribute("value");
+        String expectedFirstName = s;
+        Assert.assertEquals("Введённая фамилия не совпадает с ожидаемым", expectedFirstName, actualFirstName);
+    }
+
+    public void assertName(String s) {
+        String actualName = driver.findElement(name).getAttribute("value");
+        String expectedName = s;
+        Assert.assertEquals("Введённое имя не совпадает с ожидаемым", expectedName, actualName);
     }
 }
