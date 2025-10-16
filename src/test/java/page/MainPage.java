@@ -1,19 +1,14 @@
 package page;
 
 import org.junit.Assert;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import static org.openqa.selenium.Keys.ENTER;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.JavascriptExecutor;
-import java.util.Arrays;
-import java.util.Collection;
 
 
-@RunWith(Parameterized.class)
 public class MainPage {
     private WebDriver driver;
 

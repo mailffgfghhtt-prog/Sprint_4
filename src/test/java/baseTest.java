@@ -1,4 +1,3 @@
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import page.MainPage;
@@ -58,13 +57,6 @@ public class baseTest {
         });
     }
 
-    public void setupCommonStuff(WebDriver driver) {
-
-    }
-
-    public void tearDownCommonStuff() {
-
-    }
 
     @After
     public void tearDown() {

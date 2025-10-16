@@ -16,6 +16,7 @@ public class MainFaqPage {
     private String accordionId;
     private String expectedText;
 
+
     public MainFaqPage(WebDriver driver, String accordionId, String expectedText) {
         this.driver = driver;
         this.accordionId = accordionId;
