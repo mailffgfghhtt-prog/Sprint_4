@@ -1,5 +1,5 @@
 import org.junit.Test;
-public class FaqTest extends BaseTest {
+public class FaqTest extends baseTest {
     public FaqTest(String browserType) {
         super(browserType);
     }

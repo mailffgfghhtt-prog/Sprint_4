@@ -1,5 +1,5 @@
 import org.junit.Test;
-public class ScooterFormTest extends BaseTest {
+public class ScooterFormTest extends baseTest {
     public ScooterFormTest(String browserType) {
         super(browserType);
     }
