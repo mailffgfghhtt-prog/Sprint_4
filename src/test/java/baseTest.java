@@ -10,13 +10,13 @@ import page.FaqMainPage;
 import page.FormMainPage;
 import java.time.Duration;
 @RunWith(Parameterized.class)
-public abstract class BaseTest {
+public abstract class baseTest {
     protected WebDriver driver;
     protected String browserType;
     public WebDriverWait wait;
     FormMainPage formMainPage;
     FaqMainPage faqMainPage;
-    public BaseTest(String browserType) {
+    public baseTest(String browserType) {
         this.browserType = browserType;
     }
     @Before
@@ -47,4 +47,3 @@ public abstract class BaseTest {
         };
     }
 }
-
