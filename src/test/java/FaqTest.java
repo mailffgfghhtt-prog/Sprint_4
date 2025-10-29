@@ -1,70 +1,64 @@
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 public class FaqTest extends baseTest {
-    public FaqTest(String browserType) {
-        super(browserType);
+    private final String panelKey;
+    public FaqTest(String browserType, String panelKey) {
+            super(browserType);
+            this.panelKey = panelKey;
+        }
+        @Parameterized.Parameters
+        public static Object[][] data() {
+            return new Object[][]{
+                    {"chrome", "Cost"},
+                    {"chrome", "Quantity"},
+                    {"chrome", "RentalTime"},
+                    {"chrome", "Today"},
+                    {"chrome", "Extension"},
+                    {"chrome", "Charging"},
+                    {"chrome", "Cancellation"},
+                    {"chrome", "Availability"}
+            };
+        }
+        @Test
+        public void FaqTest() {
+            faqMainPage.openPage();
+            faqMainPage.scrollDown();
+            faqMainPage.clickCookie();
+            switch (panelKey) {
+                case "Cost":
+                    faqMainPage.clickCost();
+                    faqMainPage.checkCost();
+                    break;
+                case "Quantity":
+                    faqMainPage.clickQuantity();
+                    faqMainPage.checkQuantity();
+                    break;
+                case "RentalTime":
+                    faqMainPage.clickRentalTime();
+                    faqMainPage.checkRentalTime();
+                    break;
+                case "Today":
+                    faqMainPage.clickToday();
+                    faqMainPage.checkToday();
+                    break;
+                case "Extension":
+                    faqMainPage.clickExtension();
+                    faqMainPage.checkExtension();
+                    break;
+                case "Charging":
+                    faqMainPage.clickCharging();
+                    faqMainPage.checkCharging();
+                    break;
+                case "Cancellation":
+                    faqMainPage.clickCancellation();
+                    faqMainPage.checkCancellation();
+                    break;
+                case "Availability":
+                    faqMainPage.clickAvailability();
+                    faqMainPage.checkAvailability();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown panel: " + panelKey);
+            }
+        }
     }
-    @Test
-    public void testAccordionOnePanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickCost();
-        faqMainPage.checkCost();
-    }
-    @Test
-    public void testAccordionTwoPanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickQuantity();
-        faqMainPage.checkQuantity();
-    }
-    @Test
-    public void testAccordionFreePanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickRentalTime();
-        faqMainPage.checkRentalTime();
-    }
-    @Test
-    public void testAccordionFoPanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickToday();
-        faqMainPage.checkToday();
-    }
-    @Test
-    public void testAccordionFivePanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickExtension();
-        faqMainPage.checkExtension();
-    }
-    @Test
-    public void testAccordionSixPanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickCharging();
-        faqMainPage.checkCharging();
-    }
-    @Test
-    public void testAccordionSevenPanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickCancellation();
-        faqMainPage.checkCancellation();
-    }
-    @Test
-    public void testAccordionEightPanel() {
-        faqMainPage.openPage();
-        faqMainPage.scrollDown();
-        faqMainPage.clickCookie();
-        faqMainPage.clickAvailability();
-        faqMainPage.checkAvailability();
-    }
-}
