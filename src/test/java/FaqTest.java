@@ -1,64 +1,68 @@
 import org.junit.Test;
 import org.junit.runners.Parameterized;
+import page.FaqMainPage;
+import java.util.*;
+import java.util.function.Consumer;
 public class FaqTest extends baseTest {
     private final String panelKey;
+    private static final Map<String, Consumer<FaqMainPage>> PANEL_ACTIONS = new HashMap<>();
+    static {
+        PANEL_ACTIONS.put("Cost", page -> {
+            page.clickCost();
+            page.checkCost();
+        });
+        PANEL_ACTIONS.put("Quantity", page -> {
+            page.clickQuantity();
+            page.checkQuantity();
+        });
+        PANEL_ACTIONS.put("RentalTime", page -> {
+            page.clickRentalTime();
+            page.checkRentalTime();
+        });
+        PANEL_ACTIONS.put("Today", page -> {
+            page.clickToday();
+            page.checkToday();
+        });
+        PANEL_ACTIONS.put("Extension", page -> {
+            page.clickExtension();
+            page.checkExtension();
+        });
+        PANEL_ACTIONS.put("Charging", page -> {
+            page.clickCharging();
+            page.checkCharging();
+        });
+        PANEL_ACTIONS.put("Cancellation", page -> {
+            page.clickCancellation();
+            page.checkCancellation();
+        });
+        PANEL_ACTIONS.put("Availability", page -> {
+            page.clickAvailability();
+            page.checkAvailability();
+        });
+    }
     public FaqTest(String browserType, String panelKey) {
-            super(browserType);
-            this.panelKey = panelKey;
-        }
-        @Parameterized.Parameters
-        public static Object[][] data() {
-            return new Object[][]{
-                    {"chrome", "Cost"},
-                    {"chrome", "Quantity"},
-                    {"chrome", "RentalTime"},
-                    {"chrome", "Today"},
-                    {"chrome", "Extension"},
-                    {"chrome", "Charging"},
-                    {"chrome", "Cancellation"},
-                    {"chrome", "Availability"}
-            };
-        }
-        @Test
-        public void FaqTest() {
-            faqMainPage.openPage();
-            faqMainPage.scrollDown();
-            faqMainPage.clickCookie();
-            switch (panelKey) {
-                case "Cost":
-                    faqMainPage.clickCost();
-                    faqMainPage.checkCost();
-                    break;
-                case "Quantity":
-                    faqMainPage.clickQuantity();
-                    faqMainPage.checkQuantity();
-                    break;
-                case "RentalTime":
-                    faqMainPage.clickRentalTime();
-                    faqMainPage.checkRentalTime();
-                    break;
-                case "Today":
-                    faqMainPage.clickToday();
-                    faqMainPage.checkToday();
-                    break;
-                case "Extension":
-                    faqMainPage.clickExtension();
-                    faqMainPage.checkExtension();
-                    break;
-                case "Charging":
-                    faqMainPage.clickCharging();
-                    faqMainPage.checkCharging();
-                    break;
-                case "Cancellation":
-                    faqMainPage.clickCancellation();
-                    faqMainPage.checkCancellation();
-                    break;
-                case "Availability":
-                    faqMainPage.clickAvailability();
-                    faqMainPage.checkAvailability();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown panel: " + panelKey);
+        super(browserType);
+        this.panelKey = panelKey;
+    }
+    @Parameterized.Parameters(name = "Browser: {0}, Panel: {1}")
+    public static Collection<Object[]> data() {
+        List<Object[]> combinations = new ArrayList<>();
+        for (String browser : Arrays.asList("chrome", "firefox")) {
+            for (String panel : PANEL_ACTIONS.keySet()) {
+                combinations.add(new Object[]{browser, panel});
             }
         }
+        return combinations;
     }
+    @Test
+    public void testFaqPanel() {
+        faqMainPage.openPage();
+        faqMainPage.scrollDown();
+        faqMainPage.clickCookie();
+        Consumer<FaqMainPage> action = PANEL_ACTIONS.get(panelKey);
+        if (action == null) {
+            throw new IllegalArgumentException("Unknown panel: " + panelKey);
+        }
+        action.accept(faqMainPage);
+    }
+}

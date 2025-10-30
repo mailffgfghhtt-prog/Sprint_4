@@ -9,15 +9,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import page.FaqMainPage;
 import page.FormMainPage;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.Collection;
 @RunWith(Parameterized.class)
 public abstract class baseTest {
     protected WebDriver driver;
     protected String browserType;
-    public WebDriverWait wait;
-    FormMainPage formMainPage;
-    FaqMainPage faqMainPage;
+    protected WebDriverWait wait;
+    protected FormMainPage formMainPage;
+    protected FaqMainPage faqMainPage;
     public baseTest(String browserType) {
         this.browserType = browserType;
+    }
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {"chrome"},
+                {"firefox"}
+        });
     }
     @Before
     public void setUp() {
@@ -38,12 +47,5 @@ public abstract class baseTest {
         if (driver != null) {
             driver.quit();
         }
-    }
-    @Parameterized.Parameters
-    public static Object[][] data() {
-        return new Object[][]{
-                {"firefox"},
-                {"chrome"}
-        };
     }
 }

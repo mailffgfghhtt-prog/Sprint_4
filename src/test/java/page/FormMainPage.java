@@ -92,3 +92,4 @@ public class FormMainPage {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350)");
     }
 }
+//нужно исправить switch. нужно исправить информотивность заголовка, нужно исправить указания браузера, нужно исправить, убрать в константу проверяемый текст

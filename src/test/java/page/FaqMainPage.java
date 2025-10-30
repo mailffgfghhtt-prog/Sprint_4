@@ -4,6 +4,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 public class FaqMainPage {
     public static final String URL = "https://qa-scooter.praktikum-services.ru/";
+    public static final String a = "Сутки — 400 рублей. Оплата курьеру — наличными или картой.";
+    public static final String b = "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.";
+    public static final String c = "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.";
+    public static final String d = "Только начиная с завтрашнего дня. Но скоро станем расторопнее.";
+    public static final String e = "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.";
+    public static final String f = "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.";
+    public static final String g = "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.";
+    public static final String h = "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
     WebDriver driver;
     private By cost = By.id("accordion__heading-0");
     private By tCost = By.id("accordion__panel-0");
@@ -32,7 +40,7 @@ public class FaqMainPage {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }
     public void checkCost() {
-        String expectedText = "Сутки — 400 рублей. Оплата курьеру — наличными или картой.";
+        String expectedText = a;
         String actualText = driver.findElement(tCost).getText();
         assert actualText.contains(expectedText);
     }
@@ -43,7 +51,7 @@ public class FaqMainPage {
         driver.findElement(cookie).click();
     }
     public void checkQuantity() {
-        String expectedText = "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.";
+        String expectedText = b;
         String actualText = driver.findElement(tQuantity).getText();
         assert actualText.contains(expectedText);
     }
@@ -51,7 +59,7 @@ public class FaqMainPage {
         driver.findElement(quantity).click();
     }
     public void checkRentalTime() {
-        String expectedText = "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.";
+        String expectedText = c;
         String actualText = driver.findElement(tRentalTime).getText();
         assert actualText.contains(expectedText);
     }
@@ -62,7 +70,7 @@ public class FaqMainPage {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }
     public void checkToday() {
-        String expectedText = "Только начиная с завтрашнего дня. Но скоро станем расторопнее.";
+        String expectedText = d;
         String actualText = driver.findElement(tToday).getText();
         assert actualText.contains(expectedText);
     }
@@ -70,7 +78,7 @@ public class FaqMainPage {
         driver.findElement(today).click();
     }
     public void checkExtension() {
-        String expectedText = "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.";
+        String expectedText = e;
         String actualText = driver.findElement(tExtension).getText();
         assert actualText.contains(expectedText);
     }
@@ -78,7 +86,7 @@ public class FaqMainPage {
         driver.findElement(extension).click();
     }
     public void checkCharging() {
-        String expectedText = "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.";
+        String expectedText = f;
         String actualText = driver.findElement(tCharging).getText();
         assert actualText.contains(expectedText);
     }
@@ -86,7 +94,7 @@ public class FaqMainPage {
         driver.findElement(charging).click();
     }
     public void checkCancellation() {
-        String expectedText = "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.";
+        String expectedText = g;
         String actualText = driver.findElement(tCancellation).getText();
         assert actualText.contains(expectedText);
     }
@@ -94,7 +102,7 @@ public class FaqMainPage {
         driver.findElement(cancellation).click();
     }
     public void checkAvailability() {
-        String expectedText = "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
+        String expectedText = h;
         String actualText = driver.findElement(tAvailability).getText();
         assert actualText.contains(expectedText);
     }

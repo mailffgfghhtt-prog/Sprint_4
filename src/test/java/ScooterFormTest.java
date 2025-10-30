@@ -4,7 +4,7 @@ public class ScooterFormTest extends baseTest {
         super(browserType);
     }
     @Test
-    public void testForm() {
+    public void rentalFormTest() {
         formMainPage.openPage();
         formMainPage.clickBtnOrder();
         formMainPage.clickCookie();
@@ -25,7 +25,7 @@ public class ScooterFormTest extends baseTest {
         formMainPage.checkText();
     }
     @Test
-    public void testFormScroll() {
+    public void rentalFormTestDown() {
         formMainPage.openPage();
         formMainPage.scrollDown();
         formMainPage.clickBtnOrder();
